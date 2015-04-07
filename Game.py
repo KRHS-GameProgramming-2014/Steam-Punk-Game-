@@ -16,7 +16,7 @@ bgColor = r,g,b = 0, 0, 10
 
 screen = pygame.display.set_mode(size)
 
-bgImage = pygame.image.load("images/Screens/Start Screen.png").convert()
+bgImage = pygame.image.load("RS/Main Menu/Start Screen.png").convert()
 bgRect = bgImage.get_rect()
 
 backgrounds = pygame.sprite.Group()
@@ -29,8 +29,8 @@ Block.containers = (all, blocks)
 run = False
 
 startButton = Button([width/2, height-300], 
-				     "images/Buttons/Start Base.png", 
-				     "images/Buttons/Start Clicked.png")
+				     "RS/Main Menu/Start Base.png", 
+				     "RS/Main Menu/Start Clicked.png")
 
 while True:
 	while not run:
