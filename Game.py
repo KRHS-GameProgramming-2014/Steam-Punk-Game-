@@ -15,6 +15,7 @@ size = width, height
 bgColor = r,g,b = 0, 0, 10
 
 screen = pygame.display.set_mode(size)
+#fullscreen = False
 
 bgImage = pygame.image.load("RS/Main Menu/Startscreen.png").convert()
 bgRect = bgImage.get_rect()
