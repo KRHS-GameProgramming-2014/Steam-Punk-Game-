@@ -2,6 +2,8 @@ import pygame, sys, random
 from Button import Button
 from BackGround import BackGround
 from Block import Block
+from Player import Player
+from Mouse import Pointer
 
 pygame.init()
 
@@ -22,10 +24,14 @@ bgRect = bgImage.get_rect()
 
 backgrounds = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
+players = pygame.sprite.Group()
+pointers = pygame.sprite.Group()
 all = pygame.sprite.OrderedUpdates()
 
 BackGround.containers = (all, backgrounds)
 Block.containers = (all, blocks)
+Player.containers = (all, players)
+Pointer.containers = (all, pointers)
 
 run = False
 
@@ -63,6 +69,11 @@ while True:
         clock.tick(60)
         
     BackGround("RS/background.png")
+    player = Player([width/2, height/2])
+    
+    Pointer("RS/pointer.png")
+    pygame.mouse.set_visible(False)
+
 
     while run:
         for event in pygame.event.get():
