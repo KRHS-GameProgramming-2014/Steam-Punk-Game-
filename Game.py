@@ -67,10 +67,10 @@ while True:
         screen.blit(startButton.image, startButton.rect)
         pygame.display.flip()
         clock.tick(60)
-        
+    
     BackGround("RS/background.png")
     player = Player([width/2, height/2])
-    
+
     Pointer("RS/pointer.png")
     pygame.mouse.set_visible(False)
 
@@ -81,15 +81,15 @@ while True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.go("up")
-            if event.key == pygame.K_RSHIFT:
-                    print event.mod, pygame.KMOD_RALT
-                    if event.mod & pygame.KMOD_RALT: #Binary and with KMOD_RIGHT to filter out other mod keys
-                        if fullscreen:
-                            pygame.display.set_mode(size)
-                            fullscreen = True
-                        else:
-                            pygame.display.set_mode(size, pygame.FULLSCREEN)
-                            fullscreen = True
+                if event.key == pygame.K_RSHIFT:
+                        print event.mod, pygame.KMOD_RALT
+                        if event.mod & pygame.KMOD_RALT: #Binary and with KMOD_RIGHT to filter out other mod keys
+                            if fullscreen:
+                                pygame.display.set_mode(size)
+                                fullscreen = True
+                            else:
+                                pygame.display.set_mode(size, pygame.FULLSCREEN)
+                                fullscreen = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.go("stop up")
@@ -101,4 +101,4 @@ while True:
         pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
-        
+            
