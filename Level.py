@@ -83,32 +83,10 @@ class Level():
             for x, c in enumerate(line):
                 if c == "#":
                     world = int(self.level[6])
-                    if world == 1:
-                        self.hardBlocks += [Block("RSC/Block/bush.png",
-                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                        (self.blockSize,self.blockSize))]
-                    elif world == 2:
-                        self.hardBlocks += [Block("RSC/Block/rockWall.png",
-                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                        (self.blockSize,self.blockSize))]
-                    elif world == 3:
-                        self.hardBlocks += [Block("RSC/Block/iceWall.png",
-                                        [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                        (self.blockSize,self.blockSize))]
-                    self.blocks += [self.hardBlocks[-1]]
-                if c == "*":
-                    if world == 1:    
-                        self.blocks += [Block("RSC/Block/block.png",
+                    self.hardBlocks += [Block("RSC/Block/bush.png",
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                     (self.blockSize,self.blockSize))]
-                    elif world == 2:
-                        self.blocks += [Block("RSC/Block/fireBlock.png",
-                                    [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                    (self.blockSize,self.blockSize))]
-                    elif world == 3:
-                        self.blocks += [Block("RSC/Block/snowBlock.png",
-                                    [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                    (self.blockSize,self.blockSize))]
+
 
         #----Done with file---
         try:
