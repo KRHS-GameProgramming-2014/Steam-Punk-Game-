@@ -60,6 +60,7 @@ while True:
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.release(event.pos):
                     run = True
+            
                     
         bgColor = r,g,b
         screen.fill(bgColor)
