@@ -19,7 +19,6 @@ class Block(pygame.sprite.Sprite):
         self.place(pos)
         self.living = True
         self.clicked = False
-
         self.image = self.baseImage
         self.rect = self.image.get_rect()
         
