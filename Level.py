@@ -8,6 +8,8 @@ class Level():
         self.screenWidth = screenSize[0]
         self.screenHeight = screenSize[1]
         self.blocks = []
+        self.hardBlocks = []
+        
         self.players = []
         
         self.blockSize = 50
@@ -15,12 +17,12 @@ class Level():
         self.load(level)
 
     def killOldLevels(self, timeInSeconds):
-        for f in os.listdir("RSC/Maps/"):
+        for f in os.listdir("RS/Maps/"):
             if f[-5:] == ".tngs":
-                print f, time.time() - os.path.getmtime("RSC/Maps/"+f), timeInSeconds
-                if (time.time() - os.path.getmtime("RSC/Maps/"+f)) > timeInSeconds:
+                print f, time.time() - os.path.getmtime("RS/Maps/"+f), timeInSeconds
+                if (time.time() - os.path.getmtime("RS/Maps/"+f)) > timeInSeconds:
                     print f
-                    os.remove("RSC/Maps/"+f)
+                    os.remove("RS/Maps/"+f)
             
     def unload(self):
         things = []
@@ -42,7 +44,7 @@ class Level():
             thingString += "\n"
         #print thingString
         
-        thingMap="RSC/Maps/"+ self.level +".tngs"
+        thingMap="RS/Maps/"+ self.level +".tngs"
         savedThingfile = open(thingMap, "w")
         savedThingfile.write(thingString)
         savedThingfile.close()
@@ -56,9 +58,9 @@ class Level():
         self.killOldLevels(30)
         self.level = level
         print self.level
-        geoMap="RSC/Maps/"+ level +".lvl"
-        thingMap="RSC/Maps/"+ level +".tng"
-        savedThingMap="RSC/Maps/"+ level +".tngs"
+        geoMap="RS/Maps/"+ level +".lvl"
+        thingMap="RS/Maps/"+ level +".tng"
+        savedThingMap="RS/Maps/"+ level +".tngs"
 
         geofile = open(geoMap, "r")
         lines = geofile.readlines()
@@ -83,9 +85,10 @@ class Level():
             for x, c in enumerate(line):
                 if c == "#":
                     world = int(self.level[6])
-                    self.hardBlocks += [Block("RSC/Block/bush.png",
+                    self.hardBlocks += [Block((self.blockSize,self.blockSize) ,"RS/Block/block.png", 
+                                    "RS/Block/block.png",
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                    (self.blockSize,self.blockSize))]
+                                    )]
 
 
         #----Done with file---
@@ -121,7 +124,7 @@ class Level():
                     levy = int(self.level[8])-1
                     newlev = screen + str(world) + str(levx) + str(levy)
                     self.levelChangeBlocks += [LevelChangeBlock(
-                                                                "RSC/Block/NDoor.png",
+                                                                "RS/Block/block.png",
                                                                 [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
                                                                 (self.blockSize, self.blockSize),
                                                                 newlev, c)]
