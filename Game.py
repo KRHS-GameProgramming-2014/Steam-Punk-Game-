@@ -69,7 +69,7 @@ while True:
         pygame.display.flip()
         clock.tick(60)
     
-    BackGround("RS/background.png")
+    BackGround("background.png")
     player = Player([width/2, height/2])
 
     Pointer("RS/pointer.png")
