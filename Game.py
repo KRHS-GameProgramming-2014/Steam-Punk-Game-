@@ -4,6 +4,7 @@ from BackGround import BackGround
 from Block import Block
 from Player import Player
 from Mouse import Pointer
+from Level import Level
 
 pygame.init()
 
@@ -11,12 +12,9 @@ clock = pygame.time.Clock()
 
 width = 800 
 height = 600
-size = width, height
+screenSize = width, height
 
-
-bgColor = r,g,b = 0, 0, 10
-
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(screenSize)
 fullscreen = False
 
 bgImage = pygame.image.load("RS/Main Menu/Startscreen.png").convert()
@@ -32,6 +30,9 @@ BackGround.containers = (all, backgrounds)
 Block.containers = (all, blocks)
 Player.containers = (all, players)
 Pointer.containers = (all, pointers)
+
+bgColor = r,g,b = 0, 0, 10
+
 
 run = False
 
@@ -72,6 +73,10 @@ while True:
     BackGround("background.png")
     player = Player([width/2, height/2])
 
+    level = Level("screen1", ["Dan", "Sean"], screenSize)
+    level.killOldLevels(0)
+
+
     Pointer("RS/pointer.png")
     pygame.mouse.set_visible(False)
 
@@ -94,7 +99,11 @@ while True:
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.go("stop up")
-
+        for block in blocks:
+            block.update()
+            
+        for block in level.blocks:
+            screen.blit(block.image, block.rect)
 
         all.update(width, height)
         
