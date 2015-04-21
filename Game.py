@@ -94,7 +94,7 @@ while True:
                                 pygame.display.set_mode(size)
                                 fullscreen = True
                             else:
-                                pygame.display.set_mode(size, pygame.FULLSCREEN)
+                                pygame.display.set_mode(screenSize, pygame.FULLSCREEN)
                                 fullscreen = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
