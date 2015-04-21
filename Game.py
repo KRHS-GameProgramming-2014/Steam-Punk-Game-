@@ -1,4 +1,5 @@
 import pygame, sys, random
+import pygame, sys, random
 from Button import Button
 from BackGround import BackGround
 from Block import Block
@@ -34,6 +35,7 @@ Pointer.containers = (all, pointers)
 bgColor = r,g,b = 0, 0, 10
 
 
+            
 run = False
 
 startButton = Button([width/2, height-200], 
@@ -71,12 +73,11 @@ while True:
         clock.tick(60)
     
     BackGround("RS/background.png")
-    player = Player([width/2, height/2])
-
+    
     level = Level("screen1", ["Dan", "Sean"], screenSize)
     level.killOldLevels(0)
-
-
+    player = Player([width/2, height/2])
+    
     Pointer("RS/pointer.png")
     pygame.mouse.set_visible(False)
 
@@ -99,11 +100,14 @@ while True:
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_w or event.key == pygame.K_UP:
                     player.go("stop up")
-        for block in blocks:
-            block.update()
-            
-        for block in level.blocks:
-            screen.blit(block.image, block.rect)
+                
+            if event.type == pygame.MOUSEBUTTONUP:
+                if event.button == 1:
+                    pointersHitBlocks = pygame.sprite.groupcollide(pointers, blocks, False, False)
+                    
+                    for pointer in pointersHitBlocks:
+                        for block in pointersHitBlocks[pointer]:
+                            player.rect.center = block.rect.center
 
         all.update(width, height)
         

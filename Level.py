@@ -85,10 +85,10 @@ class Level():
             for x, c in enumerate(line):
                 if c == "#":
                     world = int(self.level[6])
-                    self.hardBlocks += [Block((self.blockSize,self.blockSize) ,"RS/Block/block.png", 
+                    Block((self.blockSize,self.blockSize) ,"RS/Block/block.png", 
                                     "RS/Block/block.png",
                                     [(x*self.blockSize)+(self.blockSize/2), (y*self.blockSize)+(self.blockSize/2)],
-                                    )]
+                                    )
 
 
         #----Done with file---

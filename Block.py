@@ -13,23 +13,18 @@ class Block(pygame.sprite.Sprite):
         if size != None:
             self.baseImage = pygame.transform.scale(self.baseImage, size)
             self.clickedImage = pygame.transform.scale(self.clickedImage, size)
-        self.image = pygame.image.load(image)
-        
-        self.rect = self.image.get_rect()
-        self.place(pos)
-        self.living = True
-        self.clicked = False
         self.image = self.baseImage
         self.rect = self.image.get_rect()
+        self.place(pos)
+        #self.pos = self.rect.center
+        #print self.rect.center
+        self.living = True
+        self.clicked = False
+        
+        
         
     def place(self, pos):
-        self.rect.topleft = pos
-    
-    def collidePoint(self, pt):
-        if self.rect.right > pt[0] and self.rect.left < pt[0]:
-            if self.rect.bottom > pt[1] and self.rect.top < pt[1]:      
-                return True
-        return False
+        self.rect.center = pos
     
     def click(self, pt):
         if self.collidePoint(pt):
