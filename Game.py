@@ -72,7 +72,7 @@ while True:
         pygame.display.flip()
         clock.tick(60)
     
-    BackGround("RS/background.png")
+    BackGround("images/background.png")
     
     level = Level("screen1", ["Dan", "Sean"], screenSize)
     level.killOldLevels(0)
