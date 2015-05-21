@@ -6,6 +6,7 @@ from Block import Block
 from Player import Player
 from Mouse import Pointer
 from Level import Level
+from story import TextWindow
 
 pygame.init()
 
@@ -18,10 +19,8 @@ screenSize = width, height
 screen = pygame.display.set_mode(screenSize)
 fullscreen = False
 
-bgImage = pygame.image.load("RS/Main Menu/Startscreen.png").convert()
-bgRect = bgImage.get_rect()
-
 backgrounds = pygame.sprite.Group()
+splashItems = pygame.sprite.Group()
 blocks = pygame.sprite.Group()
 players = pygame.sprite.Group()
 pointers = pygame.sprite.Group()
@@ -31,24 +30,30 @@ BackGround.containers = (all, backgrounds)
 Block.containers = (all, blocks)
 Player.containers = (all, players)
 Pointer.containers = (all, pointers)
+TextWindow.containers = (all, pointers)
+Button.containers = (all, pointers)
 
 bgColor = r,g,b = 0, 0, 10
 
 
             
-run = False
+run = "StartScreen"
 
-startButton = Button([width/2, height-200], 
-                     "RS/Main Menu/Start Base.png", 
-                     "RS/Main Menu/Start Clicked.png")
+
 
 while True:
-    while not run:
+    for s in all.sprites():
+        s.kill()
+    BackGround("RS/Main Menu/Startscreen.png")
+    startButton = Button([width/2, height-200], 
+                     "RS/Main Menu/Start Base.png", 
+                     "RS/Main Menu/Start Clicked.png")
+    while run == "StartScreen":
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    run = True
+                    run = "StoryScreen"
                 if event.key == pygame.K_RETURN:
                     print event.mod, pygame.KMOD_RALT
                     if event.mod & pygame.KMOD_RALT: #Binary and with KMOD_RIGHT to filter out other mod keys
@@ -62,16 +67,36 @@ while True:
                 startButton.click(event.pos)
             if event.type == pygame.MOUSEBUTTONUP:
                 if startButton.release(event.pos):
-                    run = True
-            
+                    run = "StoryScreen"
                     
-        bgColor = r,g,b
-        screen.fill(bgColor)
-        screen.blit(bgImage, bgRect)
-        screen.blit(startButton.image, startButton.rect)
+        all.update(width, height)
+        
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
         pygame.display.flip()
         clock.tick(60)
     
+    for s in all.sprites():
+        s.kill()
+    BackGround("images/background.png")
+    tw = TextWindow("RS/Story.txt", "RS/TextGB.png", [width/2,100])
+    while run == "StoryScreen":
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                tw.skip()
+        
+        all.update(width, height)
+        if tw.done:
+            run = "Game"
+        
+        dirty = all.draw(screen)
+        pygame.display.update(dirty)
+        pygame.display.flip()
+        clock.tick(60)
+    
+    for s in all.sprites():
+        s.kill()
     BackGround("images/background.png")
     
     level = Level("screen1", ["Dan", "Sean"], screenSize)
@@ -82,7 +107,7 @@ while True:
     pygame.mouse.set_visible(False)
 
 
-    while run:
+    while run == "Game":
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:

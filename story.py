@@ -14,6 +14,9 @@ class TextWindow(pygame.sprite.Sprite):
         self.image.blit(self.subTextSurface, pygame.Rect(4,4,600,200))
         self.speedx = 0
         self.speedy = 1
+        self.waitCount = 0
+        self.waitMax = 3
+        self.done = False
     
     def makeTextImage(self, textFile):
         f = open(textFile, 'r')
@@ -30,7 +33,7 @@ class TextWindow(pygame.sprite.Sprite):
         
         textLines = newlines
         
-        tsize = 600, 2650
+        tsize = 600, 3200
         
         background = pygame.Surface(tsize)
         background = background.convert()
@@ -50,12 +53,23 @@ class TextWindow(pygame.sprite.Sprite):
         self.move()
         
     def move(self):
-        if self.textRect[1] < 2450:
-            print self.textRect
-            self.textRect[1] += self.speedy
-            print self.textRect
-            self.subTextSurface = self.textSurface.subsurface(self.textRect)
-            self.image.blit(self.subTextSurface, pygame.Rect(4,4,600,200))
+        if self.textRect[1] < 3000:
+            if self.waitCount < self.waitMax:
+                self.waitCount += 1
+            else:
+                self.waitCount = 0
+                print self.textRect
+                self.textRect[1] += self.speedy
+                print self.textRect
+                self.subTextSurface = self.textSurface.subsurface(self.textRect)
+                self.image.blit(self.subTextSurface, pygame.Rect(4,4,600,200))
+        else:
+            self.done = True
+    
+    def skip(self):
+        self.done = True
+        
+        
         
 if __name__ == '__main__':
     pygame.init()
@@ -79,6 +93,7 @@ if __name__ == '__main__':
 
     TextWindow("RS/Story.txt", "RS/TextGB.png", [width/2,100])
     
+
 
     while True:
         for event in pygame.event.get():
