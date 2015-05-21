@@ -24,10 +24,10 @@ class Human(pygame.sprite.Sprite):
         width = args[1]
         height = args[2]
 
-        self.speed = [self.speedx, self.speedy]
         self.move()
         
     def move(self):
+        self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
 
     def attack(self):
