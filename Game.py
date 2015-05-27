@@ -44,7 +44,7 @@ run = "StartScreen"
 while True:
     for s in all.sprites():
         s.kill()
-    BackGround("RS/Main Menu/Startscreen.png")
+    BackGround("RS/Main Menu/Startscreen.png", screenSize)
     startButton = Button([width/2, height-200], 
                      "RS/Main Menu/Start Base.png", 
                      "RS/Main Menu/Start Clicked.png")
@@ -78,7 +78,7 @@ while True:
     
     for s in all.sprites():
         s.kill()
-    BackGround("images/background.png")
+    BackGround("images/background1.png",screenSize)
     tw = TextWindow("RS/Story.txt", "RS/TextGB.png", [width/2,100])
     while run == "StoryScreen":
         for event in pygame.event.get():
@@ -97,7 +97,7 @@ while True:
     
     for s in all.sprites():
         s.kill()
-    BackGround("images/background.png")
+    BackGround("images/background1.png", screenSize)
     
     level = Level("screen1", ["Dan", "Sean"], screenSize)
     level.killOldLevels(0)
