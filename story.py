@@ -33,7 +33,7 @@ class TextWindow(pygame.sprite.Sprite):
         
         textLines = newlines
         
-        tsize = 600, 3200
+        tsize = 600, 3500
         
         background = pygame.Surface(tsize)
         background = background.convert()
@@ -53,7 +53,7 @@ class TextWindow(pygame.sprite.Sprite):
         self.move()
         
     def move(self):
-        if self.textRect[1] < 3000:
+        if self.textRect[1] < 3300:
             if self.waitCount < self.waitMax:
                 self.waitCount += 1
             else:
