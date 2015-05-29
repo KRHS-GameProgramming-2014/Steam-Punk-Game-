@@ -4,18 +4,18 @@ from Human import Human
 class Player(Human):
 	def __init__(self, pos):
 		Human.__init__(self, "images/Player/pballbu.png", [0,0], pos)
-		self.upImages = [pygame.image.load("images/Player/pballru.png"),
-						 pygame.image.load("images/Player/pballgu.png"),
-						 pygame.image.load("images/Player/pballbu.png")]
-		self.downImages = [pygame.image.load("images/Player/pballrd.png"),
-						   pygame.image.load("images/Player/pballgd.png"),
-						   pygame.image.load("images/Player/pballbd.png")]
-		self.leftImages = [pygame.image.load("images/Player/pballrl.png"),
-						   pygame.image.load("images/Player/pballgl.png"),
-						   pygame.image.load("images/Player/pballbl.png")]
-		self.rightImages = [pygame.image.load("images/Player/pballrr.png"),
-						    pygame.image.load("images/Player/pballgr.png"),
-						    pygame.image.load("images/Player/pballbr.png")]
+		self.upImages = [pygame.image.load("images/Player/lady.png"),
+						 pygame.image.load("images/Player/lady.png"),
+						 pygame.image.load("images/Player/lady.png")]
+		self.downImages = [pygame.image.load("images/Player/lady.png"),
+						   pygame.image.load("images/Player/lady.png"),
+						   pygame.image.load("images/Player/lady.png")]
+		self.leftImages = [pygame.image.load("images/Player/lady.png"),
+						   pygame.image.load("images/Player/lady.png"),
+						   pygame.image.load("images/Player/lady.png")]
+		self.rightImages = [pygame.image.load("images/Player/lady.png"),
+						    pygame.image.load("images/Player/lady.png"),
+						    pygame.image.load("images/Player/lady.png")]
 		self.facing = "up"
 		self.changed = False
 		self.images = self.upImages
