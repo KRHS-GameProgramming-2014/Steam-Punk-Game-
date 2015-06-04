@@ -78,7 +78,7 @@ while True:
     
     for s in all.sprites():
         s.kill()
-    BackGround("images/background1.png",screenSize)
+    BackGround("images/Screens/europeMap1.png")
     tw = TextWindow("RS/Story.txt", "RS/TextGB.png", [width/2,100])
     while run == "StoryScreen":
         for event in pygame.event.get():

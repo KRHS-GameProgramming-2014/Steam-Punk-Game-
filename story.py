@@ -89,7 +89,7 @@ if __name__ == '__main__':
     TextWindow.containers = (all, backgrounds)
     BackGround.containers = (all, backgrounds)
 
-    BackGround("images/Screens/StoryBackground1.psd")
+    BackGround("images/Screens/europeMap1.png")
 
     TextWindow("RS/Story.txt", "RS/TextGB.png", [width/2,100])
     
