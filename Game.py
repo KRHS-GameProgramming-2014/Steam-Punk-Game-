@@ -10,6 +10,7 @@ from story import TextWindow
 
 pygame.init()
 
+
 clock = pygame.time.Clock()
 
 width = 800 
